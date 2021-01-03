@@ -21,6 +21,7 @@ function App() {
         <div className="container">
           <Route path="/login" component={LoginContainer}/>
           <Route path="/register" component={RegisterContainer}/>
+          <PrivateRoute path="/" component={RegisterContainer}/>
         </div>
       </Router>
     </AuthContext.Provider>
