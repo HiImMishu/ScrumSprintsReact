@@ -12,17 +12,13 @@ code {
     monospace;
 }
 
-label {
-  margin-bottom: 0.1rem;
-}
-
-.login-container {
+.form-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 
-.login-form {
+.center-form {
   margin: 0 auto;
 }
 
@@ -36,4 +32,8 @@ label {
   display: none;
   color: red;
   font-size: 0.8rem;
+}
+
+.form-label {
+  margin-bottom: -0.1rem;
 }

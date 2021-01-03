@@ -7,11 +7,13 @@ import BASE_URL from '../constants'
 const LoginContainer = () => {
     const [email, setEmail] = useState("")
     const [password, setPaswword] = useState("")
-    const [emailError, setEmailError] = useState(false)
-    const [passwordError, setPasswordError] = useState(false)
+    const [emailError, setEmailError] = useState()
+    const [passwordError, setPasswordError] = useState()
     const {authToken, setAuthToken} = useAuth();
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
         fetch(BASE_URL + "/users/token", {
             method: 'POST',
             mode: 'cors',
@@ -44,7 +46,9 @@ const LoginContainer = () => {
         .then(data => {
             setAuthToken(data.access_token)
         })
-        .catch(error => {console.clear()})
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     if (authToken) 

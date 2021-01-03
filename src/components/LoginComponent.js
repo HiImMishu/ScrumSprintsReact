@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 
 const FormComponent = (props) => {
     return (
-        <div className="login-container">
-        <form className="login-form">
+        <div className="form-container">
+        <form className="center-form" onSubmit={props.handleSubmit} method="POST">
 
             <div className="mb-3">
                 <label htmlFor="inputEmail" className="form-label">Email address</label>
@@ -46,7 +46,7 @@ const FormComponent = (props) => {
                 </div>
             </div>
 
-            <button type="button" className="btn btn-primary mb-4" onClick={props.handleSubmit}>Login</button>
+            <button className="btn btn-primary mb-4">Login</button>
 
             <div>
                 <Link to="/register">Don't have an account?</Link>
