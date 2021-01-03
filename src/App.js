@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import LoginContainer from './components/LoginContainer'
+import RegisterContainer from './components/RegisterContainer'
+import { AuthContext } from './context/auth';
+import PrivateRoute from './PrivateRoute';
 
 function App() {
+  const existingToken = localStorage.getItem("token")
+  const [authToken, setAuthToken] = useState(existingToken)
+
+  const setToken = (data) => {
+    localStorage.setItem("token", data)
+    setAuthToken(data)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider value={{authToken, setAuthToken: setToken}}>
+      <Router>
+        <div className="container">
+          <Route path="/login" component={LoginContainer}/>
+          <Route path="/register" component={RegisterContainer}/>
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

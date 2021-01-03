@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+label {
+  margin-bottom: 0.1rem;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.login-form {
+  margin: 0 auto;
+}
+
+.form-addon {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: -1px;
+}
+
+.form-error {
+  display: none;
+  color: red;
+  font-size: 0.8rem;
+}
