@@ -3,11 +3,12 @@ import NavigationComponent from './NavigationComponent'
 import {useAuth} from '../context/auth'
 import jwt from 'jwt-decode'
 import BASE_URL from '../constants'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const HomePageContainer = () => {
     const {authToken, setAuthToken} = useAuth()
     const token = jwt(authToken)
+    const [logOut, setLogOut] = useState(false)
     const [loadUser, setLoadUser] = useState()
     const [teamCode, setTeamCode] = useState("")
     const [invalidCode, setInvalidCode] = useState(false)  
@@ -34,15 +35,18 @@ const HomePageContainer = () => {
         }]
     })
 
-    const signOut = () => {
-        setAuthToken("")
-    }
+    useEffect(() => {
+        if (logOut) {
+            setLogOut(false)
+            setAuthToken("");
+        }
+    }, [token.exp, logOut, setAuthToken])
+            
 
     const fetchUser = () => {
         if (loadUser) {
             return
         }
-
         setLoadUser(true)
 
         fetch(BASE_URL + "/users/"+token.sub, {
@@ -59,7 +63,7 @@ const HomePageContainer = () => {
                 return response.json()
             }
             else if (response.status === 401) {
-                signOut()
+                setLogOut(true)
             }
             else {
                 throw Error("Error occured. Status code: " + response.status)
@@ -101,20 +105,16 @@ const HomePageContainer = () => {
                 setTimeout(() => setInvalidCode(false), 3000)
             }
             else if (response.status === 401) {
-                signOut()
+                setLogOut(true)
             }
         })
-    }
-
-    if (token.exp < Math.floor(Date.now() / 1000)) {
-        signOut()
     }
 
     fetchUser()
 
     return (
         <div>
-            <NavigationComponent signOut = {signOut}/>
+            <NavigationComponent setLogOut = {setLogOut}/>
             <HomePageComponent 
                 {...userData}
                 teamCode = {teamCode}

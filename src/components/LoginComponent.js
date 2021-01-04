@@ -9,7 +9,7 @@ const FormComponent = (props) => {
             <div className="mb-3">
                 <label htmlFor="inputEmail" className="form-label">Email address</label>
                 <div className="input-group">
-                    <span className="input-group-text form-addon"><i class="fas fa-user"/></span>
+                    <span className="input-group-text form-addon"><i className="fas fa-user"/></span>
                     <input 
                         type="email" 
                         className="form-control" 
@@ -29,7 +29,7 @@ const FormComponent = (props) => {
             <div className="mb-3">
                 <label htmlFor="inputPassword" className="form-label">Password</label>
                 <div className="input-group">
-                    <span className="input-group-text form-addon"><i class="fas fa-lock"/></span>
+                    <span className="input-group-text form-addon"><i className="fas fa-lock"/></span>
                     <input 
                         type="password" 
                         className="form-control" 

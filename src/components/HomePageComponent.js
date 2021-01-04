@@ -42,34 +42,34 @@ const HomePageComponent = (props) => {
     )})
     
     return (
-        <div class="full-width">
+        <div className="full-width">
             <div className="row mt-5">
                 <div className="col mb-3">
-                    <Card style={{width: '18rem'}}>
+                    <Card style={{minWidth: '18rem', maxWidth: '28rem'}}>
                         <Card.Header className="bg-primary text-light">Products Owned</Card.Header>
                         <ListGroup variant="flush">
                             {productItems}
                             <ListGroup.Item action className="bg-secondary bg-gradient text-light">
-                                <i class="fas fa-plus mr-3"></i>
+                                <i className="fas fa-plus mr-3"></i>
                                 Add Product
                             </ListGroup.Item>
                         </ListGroup>                    
                     </Card>
                 </div>
                 <div className="col mb-3">
-                <Card style={{width: '18rem'}}>
+                    <Card style={{minWidth: '18rem', maxWidth: '28rem'}}>
                         <Card.Header className="bg-primary text-light">Teams Leaded</Card.Header>
                         <ListGroup variant="flush">
                             {teamsLeaded}
                             <ListGroup.Item action className="bg-secondary bg-gradient text-light">
-                                <i class="fas fa-plus mr-3"></i>
+                                <i className="fas fa-plus mr-3"></i>
                                 Add Team
                             </ListGroup.Item>
                         </ListGroup>                    
                     </Card>
                 </div>
                 <div className="col mb-3">
-                    <Card style={{width: '18rem'}}>
+                    <Card style={{minWidth: '18rem', maxWidth: '28rem'}}>
                         <Card.Header className="bg-primary text-light">Teams Participated</Card.Header>
                         <ListGroup variant="flush">
                             {teasmParticipated}
@@ -78,7 +78,7 @@ const HomePageComponent = (props) => {
                                     <Card.Title>Join Team</Card.Title>
                                     <Form className="form-inline">
                                         <FormControl 
-                                            style={{width: '65%'}} 
+                                            style={{width: '60%'}} 
                                             type="text" 
                                             placeholder="Team Code" 
                                             className="mr-3" 
