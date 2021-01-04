@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link } from 'react-router-dom'
 
-const NavigationComponent = () => {
+const NavigationComponent = (props) => {
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand as={Link} to="/">Scrum Sprints</Navbar.Brand>
@@ -14,11 +14,11 @@ const NavigationComponent = () => {
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <NavDropdown title="Account" id="account-dropdown">
                         <NavDropdown.Item as={Link} to="/test">Edit Account</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/">Sign Out</NavDropdown.Item>
+                        <NavDropdown.Item href="#" onClick={props.signOut}>Sign Out</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item as={Link} to="/">Archive Account</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link href="">Sign Out</Nav.Link>
+                    <Nav.Link href="#" onClick={props.signOut}>Sign Out</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

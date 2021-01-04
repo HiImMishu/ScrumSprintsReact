@@ -37,3 +37,29 @@ code {
 .form-label {
   margin-bottom: -0.1rem;
 }
+
+.mr-3 {
+  margin-right: 0.6rem;
+}
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+#invalidCodeAlert {
+  width: 80%;
+  bottom: 50px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: 0.6s;
+}
+
+.invalidCodeAlertHidden {
+  opacity: 1 !important;
+}
