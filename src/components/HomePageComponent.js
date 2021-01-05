@@ -10,7 +10,7 @@ import {Link} from 'react-router-dom'
 const HomePageComponent = (props) => {
     const productItems = props.products.map(p => {return <ListGroup.Item key={p.id} action>{p.name}</ListGroup.Item>})
     const teamsLeaded = props.teamsLeaded.map(lt => {return (
-        <ListGroup.Item key={lt.id} action>
+        <ListGroup.Item key={lt.id} action as={Link} to="/">
             {lt.name}
             <footer className="blockquote-footer mt-1 form-label">
                 Created At: <cite>
