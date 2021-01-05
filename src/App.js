@@ -32,7 +32,7 @@ function App() {
           <PrivateRoute path="/products/add" component={AddProductContainer}/>
           <PrivateRoute path="/teams/add" component={AddTeamContainer}/>
           <PrivateRoute exact path="/products/:id" component={ProductInfoContainer}/>
-          <PrivateRoute exact path="/products/items/:id" component={AddEditItemContainer}/>
+          <PrivateRoute exact path="/products/:productId/items/:itemId" component={AddEditItemContainer}/>
         </div>
       </Router>
     </AuthContext.Provider>

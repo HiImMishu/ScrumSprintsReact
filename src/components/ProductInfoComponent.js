@@ -62,8 +62,8 @@ const ProductInfoComponent = (props) => {
                 <td>
                     <span className="d-flex justify-content-center">
                         <ButtonGroup>
-                            <Button as={Link} to={{pathName: `/products/items/"+${item.itemId}`, action: "update"}} variant="primary">Update</Button>
-                            <Button variant="danger">Delete</Button>
+                            <Button as={Link} to={{pathname: `/products/${props.id}/items/${item.itemId}`, action: "update", item: item}} variant="primary">Update</Button>
+                            <Button onClick={() => props.deleteItem(item.itemId)} variant="danger">Delete</Button>
                         </ButtonGroup>
                     </span>
                 </td>
@@ -142,7 +142,7 @@ const ProductInfoComponent = (props) => {
                         </th>
                         <td>
                             <span className="d-flex justify-content-center">
-                                <Button variant="success">Add Item</Button>
+                                <Button as={Link} to={{pathname: `/products/${props.id}/items/0`, action: "add"}} variant="success">Add Item</Button>
                             </span>
                         </td>
                     </tr>

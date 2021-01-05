@@ -1,7 +1,6 @@
 import {useParams} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {useAuth} from '../context/auth'
-import jwt from 'jwt-decode'
 import NavigationContainer from './NavigationContainer'
 import ProductInfoComponent from './ProductInfoComponent'
 import BASE_URL from '../constants'
@@ -11,7 +10,6 @@ const ProductInfoContainer = () => {
     const [logOut, setLogOut] = useState()
     const {authToken} = useAuth()
     const [refreshProduct, setRefreshProduct] = useState(true)
-    const token = jwt(authToken)
     var { id } = useParams()
     const [product, setProduct] = useState(productModel)
 
@@ -44,6 +42,29 @@ const ProductInfoContainer = () => {
         }
     }, [refreshProduct, setRefreshProduct, authToken, id])
 
+    const deleteItem = (itemId) => {
+        fetch(BASE_URL + `/products/${product.id}/items/${itemId}`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+authToken
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                setProduct(prevProduct => ({
+                    ...prevProduct,
+                    "productItems": prevProduct.productItems.slice().filter(i => {return i.itemId !== itemId})
+                }))
+            }
+            else if (response.status === 401) {
+                setLogOut(true)
+            }
+        })
+    }
+
     return (
         <div>
             <NavigationContainer 
@@ -52,6 +73,7 @@ const ProductInfoContainer = () => {
             />
             <ProductInfoComponent
                 {...product} 
+                deleteItem = {deleteItem}
             />
         </div>
     )

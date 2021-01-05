@@ -1,3 +1,24 @@
+export const backlogModel = {
+    id: null,
+    description: "",
+    startTime: "",
+    endTime: ""
+}
+
+export const itemModel = {
+    itemId: null,
+    description: "",
+    addedAt: "",
+    status: "",
+    modifiedBy: {
+        id: null,
+        firstName: "",
+        lastName: "",
+        email: ""
+    },
+    sprint: backlogModel
+}
+
 export const productModel = {
     id: null,
     name: "",
@@ -12,28 +33,6 @@ export const productModel = {
         createdAt: "",
         name: ""
     },
-    backlogs: [{
-        id: null,
-        description: "",
-        startTime: "",
-        endTime: ""
-    }],
-    productItems: [{
-        itemId: null,
-        description: "",
-        addedAt: "",
-        status: "",
-        modifiedBy: {
-            id: null,
-            firstName: "",
-            lastName: "",
-            email: ""
-        },
-        sprint: {
-            id: null,
-            description: "",
-            startTime: "",
-            endTime: ""
-        }
-    }]
+    backlogs: [backlogModel],
+    productItems: [itemModel]
 }
