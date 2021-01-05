@@ -62,7 +62,7 @@ const HomePageComponent = (props) => {
                         <Card.Header className="bg-primary text-light">Teams Leaded</Card.Header>
                         <ListGroup variant="flush">
                             {teamsLeaded}
-                            <ListGroup.Item action className="bg-secondary bg-gradient text-light">
+                            <ListGroup.Item as={Link} to="/teams/add" action className="bg-secondary bg-gradient text-light">
                                 <i className="fas fa-plus mr-3"></i>
                                 Add Team
                             </ListGroup.Item>
