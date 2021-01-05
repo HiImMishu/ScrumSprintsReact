@@ -9,6 +9,7 @@ import { AuthContext } from './context/auth';
 import PrivateRoute from './PrivateRoute';
 import AddProductContainer from './components/AddProductContainer';
 import AddTeamContainer from './components/AddTeamContainer';
+import ProductInfoContainer from './components/ProductInfoContainer';
 
 function App() {
   const existingToken = localStorage.getItem("token")
@@ -29,6 +30,7 @@ function App() {
           <PrivateRoute path="/edit-account" component={EditAccountContainer}/>
           <PrivateRoute path="/products/add" component={AddProductContainer}/>
           <PrivateRoute path="/teams/add" component={AddTeamContainer}/>
+          <PrivateRoute path="/products/:id" component={ProductInfoContainer}/>
         </div>
       </Router>
     </AuthContext.Provider>
