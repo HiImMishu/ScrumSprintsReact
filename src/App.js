@@ -29,8 +29,8 @@ function App() {
           <Route path="/register" component={RegisterContainer}/>
           <PrivateRoute exact path="/" component={HomePageContainer}/>
           <PrivateRoute path="/edit-account" component={EditAccountContainer}/>
-          <PrivateRoute path="/products/add" component={AddProductContainer}/>
-          <PrivateRoute path="/teams/add" component={AddTeamContainer}/>
+          <PrivateRoute exact path="/add-product" component={AddProductContainer}/>
+          <PrivateRoute exact path="/teams/add" component={AddTeamContainer}/>
           <PrivateRoute exact path="/products/:id" component={ProductInfoContainer}/>
           <PrivateRoute exact path="/products/:productId/items/:itemId" component={AddEditItemContainer}/>
         </div>

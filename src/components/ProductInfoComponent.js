@@ -6,6 +6,12 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import {Link} from 'react-router-dom'
 
 const ProductInfoComponent = (props) => {
+    const leadedTeams = props.leadedTeams.map(t => {
+        return (
+            <option key={t.id} value={t.id}>{t.name}</option>
+        )
+    })
+
     const backlogs = (props.backlogs.length > 0 && props.backlogs[0].id) ? props.backlogs.map((b, i) => {
         return (
             <tr key={b.id}>
@@ -82,10 +88,55 @@ const ProductInfoComponent = (props) => {
                     <br />
                     <span>Email:</span> <span className="ml-3"> {props.owner.email}</span>
                 </Card.Body>
-                {(props.devTeam && props.devTeam.id) &&
                 <Card.Footer>
-                    A team called <i className="text-primary">{props.devTeam.name}</i> is currently working on the product.
-                </Card.Footer>}
+                    <p>
+                        {(props.devTeam && props.devTeam.id) && <span>A team called <i className="text-primary">{props.devTeam.name}</i> is currently working on the product.<br /><br /></span>}
+                        Below you can select team to work on product and edit product name.
+                    </p>
+                    <span>
+
+                    </span>
+                    <form onSubmit={props.updateTeam}>
+                        <div className="d-flex justify-content-start">
+                            <span className="mr-3">
+                                <label htmlFor="inputDevTeam" className="form-label">Dev Team</label>
+                                <select
+                                    style={{maxWidth: "20rem", minWidth: "15rem"}}
+                                    disabled = {!props.leadedTeams.length > 0}  
+                                    className="form-control form-select form-select" 
+                                    id="inputDevTeam" 
+                                    name="lastName" 
+                                    placeholder="Last Name"
+                                    required           
+                                    value = {props.teamId}
+                                    onChange = {(e) => props.setTeamId(e.target.value)}          
+                                >
+                                    <option value="-1">Select team</option>
+                                    {leadedTeams}
+                                </select>
+                            </span>
+                            <span>
+                                <div>
+                                    <label htmlFor="inputProductName" className="form-label">Product name</label>
+                                    <div className="input-group">
+                                        <span className="input-group-text form-addon"><i className="fas fa-quote-left"/></span>
+                                        <input 
+                                            type="text" 
+                                            className="form-control" 
+                                            id="inputProductName" 
+                                            name="productName" 
+                                            placeholder="Product Name"
+                                            required
+                                            value = {props.productName}
+                                            onChange = {(e) => props.setProductName(e.target.value)}                     
+                                        />
+                                    </div>
+                                </div>                     
+                            </span>
+                            <button style={{marginTop: "auto"}} className="btn btn-primary ml-3" >Save changes</button>     
+                        </div>        
+                    </form>
+                </Card.Footer>
             </Card>
 
             <h5> Product Backlogs: </h5>
