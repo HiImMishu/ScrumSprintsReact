@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import {Link} from 'react-router-dom'
 
 const ProductInfoComponent = (props) => {
     const backlogs = (props.backlogs.length > 0 && props.backlogs[0].id) ? props.backlogs.map((b, i) => {
@@ -61,7 +62,7 @@ const ProductInfoComponent = (props) => {
                 <td>
                     <span className="d-flex justify-content-center">
                         <ButtonGroup>
-                            <Button variant="primary">Update</Button>
+                            <Button as={Link} to={{pathName: `/products/items/"+${item.itemId}`, action: "update"}} variant="primary">Update</Button>
                             <Button variant="danger">Delete</Button>
                         </ButtonGroup>
                     </span>
