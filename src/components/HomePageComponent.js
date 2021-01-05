@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
+import {Link} from 'react-router-dom'
 
 const HomePageComponent = (props) => {
     const productItems = props.products.map(p => {return <ListGroup.Item key={p.id} action>{p.name}</ListGroup.Item>})
@@ -49,7 +50,7 @@ const HomePageComponent = (props) => {
                         <Card.Header className="bg-primary text-light">Products Owned</Card.Header>
                         <ListGroup variant="flush">
                             {productItems}
-                            <ListGroup.Item action className="bg-secondary bg-gradient text-light">
+                            <ListGroup.Item as={Link} to="/products/add" action className="bg-secondary bg-gradient text-light">
                                 <i className="fas fa-plus mr-3"></i>
                                 Add Product
                             </ListGroup.Item>

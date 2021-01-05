@@ -1,82 +1,19 @@
 import HomePageComponent from './HomePageComponent'
-import NavigationComponent from './NavigationComponent'
+import NavigationContainer from './NavigationContainer'
 import {useAuth} from '../context/auth'
 import jwt from 'jwt-decode'
 import BASE_URL from '../constants'
 import { useState, useEffect } from 'react'
+import {fetchUser, userModel} from '../service/UserService'
 
 const HomePageContainer = () => {
-    const {authToken, setAuthToken} = useAuth()
+    const {authToken} = useAuth()
     const token = jwt(authToken)
     const [logOut, setLogOut] = useState(false)
-    const [loadUser, setLoadUser] = useState()
+    const [loadUser, setLoadUser] = useState(true)
     const [teamCode, setTeamCode] = useState("")
     const [invalidCode, setInvalidCode] = useState(false)  
-    const [userData, setUserData] = useState({
-        id: null,
-        archivedAt: null,
-        signetAt: null,
-        email: "",
-        firstName: "",
-        lastName: "",
-        products: [{
-            id: null,
-            name: ""
-        }],
-        teamParticipated: [{
-            id: null,
-            name: "",
-            createdAt: null
-        }],
-        teamsLeaded: [{
-            id: null,
-            name: "",
-            createdAt: null
-        }]
-    })
-
-    useEffect(() => {
-        if (logOut) {
-            setLogOut(false)
-            setAuthToken("");
-        }
-    }, [token.exp, logOut, setAuthToken])
-            
-
-    const fetchUser = () => {
-        if (loadUser) {
-            return
-        }
-        setLoadUser(true)
-
-        fetch(BASE_URL + "/users/"+token.sub, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'Accept': 'application/json, text/plain',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer '+authToken
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json()
-            }
-            else if (response.status === 401) {
-                setLogOut(true)
-            }
-            else {
-                throw Error("Error occured. Status code: " + response.status)
-            }
-        })
-        .then(data => {
-            setUserData(data)
-        })
-        .catch(error => {
-            console.log(error)
-            setLoadUser(false)
-        })
-    }
+    const [userData, setUserData] = useState(userModel)     
 
     const joinTeam = () => {
         if(teamCode.length === 0) {
@@ -98,7 +35,7 @@ const HomePageContainer = () => {
         })
         .then(response => {
             if (response.ok) {
-                setLoadUser(false)
+                setLoadUser(true)
             }
             else if(response.status === 404) {
                 setInvalidCode(true)
@@ -110,11 +47,19 @@ const HomePageContainer = () => {
         })
     }
 
-    fetchUser()
-
+    useEffect(() => {
+        if (loadUser) {
+            setLoadUser(false)
+            fetchUser(token.sub, authToken, setLogOut, setUserData)
+        }
+    }, [loadUser, setLoadUser, token.sub, authToken, setLogOut, setUserData])
+    
     return (
         <div>
-            <NavigationComponent setLogOut = {setLogOut}/>
+            <NavigationContainer 
+                logOut = {logOut}
+                setLogOut = {setLogOut}
+            />
             <HomePageComponent 
                 {...userData}
                 teamCode = {teamCode}

@@ -35,6 +35,7 @@ const LoginContainer = () => {
             }
             else if (response.status === 404) {
                 setEmailError(true)
+
             }
             else if (response.status === 401) {
                 setPasswordError(true)
@@ -44,7 +45,9 @@ const LoginContainer = () => {
             }
         })
         .then(data => {
-            setAuthToken(data.access_token)
+            if (data) {
+                setAuthToken(data.access_token)
+            }
         })
         .catch(error => {
             console.log(error)

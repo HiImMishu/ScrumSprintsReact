@@ -13,10 +13,10 @@ const NavigationComponent = (props) => {
                 <Nav>
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <NavDropdown title="Account" id="account-dropdown">
-                        <NavDropdown.Item as={Link} to="/test">Edit Account</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/edit-account">Edit Account</NavDropdown.Item>
                         <NavDropdown.Item href="#" onClick={() => props.setLogOut(true)}>Sign Out</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item as={Link} to="/">Archive Account</NavDropdown.Item>
+                        <NavDropdown.Item href="#" onClick={props.archiveAccount}>Archive Account</NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link href="#" onClick={() => props.setLogOut(true)}>Sign Out</Nav.Link>
                 </Nav>

@@ -4,8 +4,10 @@ import './App.css';
 import LoginContainer from './components/LoginContainer'
 import RegisterContainer from './components/RegisterContainer'
 import HomePageContainer from './components/HomePageContainer'
+import EditAccountContainer from './components/EditAccountContainer'
 import { AuthContext } from './context/auth';
 import PrivateRoute from './PrivateRoute';
+import AddProductContainer from './components/AddProductContainer';
 
 function App() {
   const existingToken = localStorage.getItem("token")
@@ -22,8 +24,9 @@ function App() {
         <div className="container-lg">
           <Route path="/login" component={LoginContainer}/>
           <Route path="/register" component={RegisterContainer}/>
-          <PrivateRoute path="/" component={HomePageContainer}/>
-          <PrivateRoute path="/test" component={RegisterContainer}/>
+          <PrivateRoute exact path="/" component={HomePageContainer}/>
+          <PrivateRoute path="/edit-account" component={EditAccountContainer}/>
+          <PrivateRoute path="/products/add" component={AddProductContainer}/>
         </div>
       </Router>
     </AuthContext.Provider>
