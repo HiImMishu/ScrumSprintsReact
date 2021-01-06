@@ -59,7 +59,7 @@ const ProductInfoContainer = (props) => {
                 }
             })
         }
-    }, [refreshProduct, product.devTeam.id, authToken, id, props.location.teams, product.name])
+    }, [refreshProduct, product.devTeam?.id, authToken, id, props.location.teams, product.name])
 
     const deleteBacklog = (backlogId) => {
         fetch(BASE_URL + `/products/${product.id}/sprints/${backlogId}`, {

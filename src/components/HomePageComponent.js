@@ -14,7 +14,7 @@ const HomePageComponent = (props) => {
         </ListGroup.Item>
     )})
     const teamsLeaded = props.teamsLeaded.map(lt => {return (
-        <ListGroup.Item key={lt.id} action as={Link} to="/">
+        <ListGroup.Item key={lt.id} action as={Link} to={`/teams/${parseInt(lt.id)}`}>
             {lt.name}
             <footer className="blockquote-footer mt-1 form-label">
                 Created At: <cite>
@@ -30,7 +30,7 @@ const HomePageComponent = (props) => {
         </ListGroup.Item>
     )})
     const teasmParticipated = props.teamParticipated.map(tp => {return (
-        <ListGroup.Item key={tp.id} action>
+        <ListGroup.Item key={tp.id} action as={Link} to={`/teams/${parseInt(tp.id)}`}>
             {tp.name}
             <footer className="blockquote-footer mt-1 form-label">
                 Created At: <cite>
@@ -66,7 +66,7 @@ const HomePageComponent = (props) => {
                         <Card.Header className="bg-primary text-light">Teams Leaded</Card.Header>
                         <ListGroup variant="flush">
                             {teamsLeaded}
-                            <ListGroup.Item as={Link} to="/teams/add" action className="bg-secondary bg-gradient text-light">
+                            <ListGroup.Item as={Link} to="/add-team" action className="bg-secondary bg-gradient text-light">
                                 <i className="fas fa-plus mr-3"></i>
                                 Add Team
                             </ListGroup.Item>

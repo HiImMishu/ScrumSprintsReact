@@ -12,6 +12,7 @@ import AddTeamContainer from './components/AddTeamContainer';
 import ProductInfoContainer from './components/ProductInfoContainer';
 import AddEditItemContainer from './components/AddEditItemContainer';
 import AddEditBacklogContainer from './components/AddEditBacklogContainer';
+import TeamInfoContainer from './components/TeamInfoContainer';
 
 function App() {
   const existingToken = localStorage.getItem("token")
@@ -31,10 +32,11 @@ function App() {
           <PrivateRoute exact path="/" component={HomePageContainer}/>
           <PrivateRoute path="/edit-account" component={EditAccountContainer}/>
           <PrivateRoute exact path="/add-product" component={AddProductContainer}/>
-          <PrivateRoute exact path="/teams/add" component={AddTeamContainer}/>
+          <PrivateRoute exact path="/add-team" component={AddTeamContainer}/>
           <PrivateRoute exact path="/products/:id" component={ProductInfoContainer}/>
           <PrivateRoute exact path="/products/:productId/items/:itemId" component={AddEditItemContainer}/>
           <PrivateRoute exact path="/products/:productId/sprints/:sprintId" component={AddEditBacklogContainer}/>
+          <PrivateRoute exact path="/teams/:teamId" component={TeamInfoContainer}/>
         </div>
       </Router>
     </AuthContext.Provider>
