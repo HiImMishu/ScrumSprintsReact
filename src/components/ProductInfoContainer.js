@@ -61,6 +61,29 @@ const ProductInfoContainer = (props) => {
         }
     }, [refreshProduct, product.devTeam.id, authToken, id, props.location.teams, product.name])
 
+    const deleteBacklog = (backlogId) => {
+        fetch(BASE_URL + `/products/${product.id}/sprints/${backlogId}`, {
+            method: 'DELETE',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json, text/plain',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+authToken
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                setProduct(prevProduct => ({
+                    ...prevProduct,
+                    "backlogs": prevProduct.backlogs.slice().filter(b => {return b.id !== backlogId})
+                }))
+            }
+            else if (response.status === 401) {
+                setLogOut(true)
+            }
+        })
+    }
+
     const deleteItem = (itemId) => {
         fetch(BASE_URL + `/products/${product.id}/items/${itemId}`, {
             method: 'DELETE',
@@ -130,6 +153,7 @@ const ProductInfoContainer = (props) => {
                 setProductName = {setProductName}
                 teamId = {teamId}
                 setTeamId = {setTeamId}
+                deleteBacklog = {deleteBacklog}
             />
         </div>
     )
