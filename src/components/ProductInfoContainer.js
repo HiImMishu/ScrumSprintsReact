@@ -146,6 +146,7 @@ const ProductInfoContainer = (props) => {
             />
             <ProductInfoComponent
                 {...product} 
+                product = {product} 
                 deleteItem = {deleteItem}
                 leadedTeams = {leadedTeams}
                 updateTeam = {updateTeam}

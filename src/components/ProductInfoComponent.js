@@ -39,7 +39,7 @@ const ProductInfoComponent = (props) => {
                     <span className="d-flex justify-content-center">
                         <ButtonGroup>
                             <Button as={Link} to={{pathname: `/products/${props.id}/sprints/${b.id}`, action: "update", backlog: b}} variant="primary">Update</Button>
-                            <Button variant="primary">Info</Button>
+                            <Button as={Link} to={{pathname: `/products/${props.id}/backlogs/${b.id}`, product: props.product}} variant="primary">Info</Button>
                             <Button onClick={() => props.deleteBacklog(b.id)} variant="danger">Delete</Button>
                         </ButtonGroup>
                     </span>

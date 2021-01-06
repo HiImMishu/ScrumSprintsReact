@@ -67,3 +67,20 @@ code {
 .invalidCodeAlertHidden {
   opacity: 1 !important;
 }
+
+.pd-0 {
+  padding: 0;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.mh-3 {
+  min-height: 6rem;
+}
+
+.draggedItem {
+  transition: background-color 0.2s ease-in-out;
+  background-color:skyblue;
+}

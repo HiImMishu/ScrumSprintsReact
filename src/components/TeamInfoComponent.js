@@ -51,7 +51,7 @@ const TeamInfoComponent = (props) => {
                 </td>
                 <td>
                     <span className="d-flex justify-content-center">
-                        <Button variant="primary">Enter Backlog</Button>
+                        <Button as={Link} to={{pathname: `/products/${props.prod.id}/backlogs/${b.id}`, product: props.prod}} variant="primary">Enter Backlog</Button>
                     </span>
                 </td>
             </tr>
