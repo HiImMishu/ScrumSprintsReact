@@ -44,7 +44,7 @@ const BacklogContainer = (props) => {
                 productId: parseInt(product.id),
                 description: item.description,
                 status: item.status,
-                sprintId: item.status === "Added" ? parseInt(backlog.id) : -1,
+                sprintId: item.status !== "Added" ? parseInt(backlog.id) : -1,
                 modifiedBy: parseInt(token.sub)
             })
         })
@@ -76,6 +76,12 @@ const BacklogContainer = (props) => {
                     if (i.status === source.droppableId && parseInt(i.itemId) === parseInt(draggableId)) {
                         i.status = destination.droppableId
                         i.sprint = backlog
+                        i.modifiedBy = {
+                            id: token.sub,
+                            firstName: token.family_name,
+                            lastName: token.given_name,
+                            email: token.email
+                        }
                         updateItem(i)
                     }
                     return i

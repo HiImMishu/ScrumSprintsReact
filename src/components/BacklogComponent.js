@@ -11,7 +11,13 @@ const BacklogComponent = (props) => {
             <Draggable key={item.itemId} draggableId={item.itemId.toString()} index={parseInt(index)}>
                 {(provided, snapshot) => (
                     <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                        <ListGroup.Item className={snapshot.isDragging ? "draggedItem" : ""}>{item.description}</ListGroup.Item>
+                        <ListGroup.Item className={snapshot.isDragging ? "draggedItem" : ""}>
+                            {item.description}
+                            {(item.status !== "Added") && <p style={{fontSize: "12px"}} className="text-secondary">
+                                Modified by: <br /> 
+                                {item.modifiedBy?.firstName} {item.modifiedBy?.lastName}
+                            </p>}
+                            </ListGroup.Item>
                     </div>
                 )}
             </Draggable>
